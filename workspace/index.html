@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Home • arXiv CS Daily</title>
+  <link rel="stylesheet" href="assets/styles.css" />
+  <script defer src="assets/site.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <a href="index.html" class="title">arXiv CS Daily</a>
+        <div class="subtitle">Static demo built from arXiv Atom API (prefetched to avoid CORS)</div>
+      </div>
+      <nav class="nav">
+        <a href="index.html" class="active">Home</a>
+        <a href="categories/cs.AI.html">cs.AI</a>
+        <a href="categories/cs.AR.html">cs.AR</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="note" style="margin-bottom:16px">
+      This demo is a <strong>static</strong> website. To avoid browser CORS issues with the arXiv API, data is fetched ahead of time by <code>scripts/fetch_arxiv.mjs</code> and saved into <code>data/*.json</code>, and per-paper HTML pages are generated.
+    </div>
+
+    <div class="grid cols-2">
+      <div class="card">
+        <div class="card-body">
+          <h2>Artificial Intelligence (cs.AI)</h2>
+          <div class="paper-actions">
+            <a class="btn primary" href="categories/cs.AI.html">Open category page</a>
+            <a class="btn" href="data/cs.AI.json">View JSON</a>
+          </div>
+        </div>
+
+        <div class="paper-item">
+          <div class="paper-title"><a href="papers/cs.AI-1.html">SceneMaker: Open-set 3D Scene Generation with Decoupled De-occlusion and Pose Estimation Model</a></div>
+          <div class="paper-meta">
+            <span class="pill"><strong>Published</strong> 2025-12-11</span>
+            <span class="pill"><strong>Updated</strong> 2025-12-11</span>
+          </div>
+          <div class="paper-actions">
+            <a class="btn small primary" href="papers/cs.AI-1.html">Details</a>
+            <a class="btn small" href="https://arxiv.org/pdf/2512.10957v1" target="_blank" rel="noopener">PDF</a>
+          </div>
+        </div>
+
+        <div class="paper-item">
+          <div class="paper-title"><a href="papers/cs.AI-2.html">Hierarchical Dataset Selection for High-Quality Data Sharing</a></div>
+          <div class="paper-meta">
+            <span class="pill"><strong>Published</strong> 2025-12-11</span>
+            <span class="pill"><strong>Updated</strong> 2025-12-11</span>
+          </div>
+          <div class="paper-actions">
+            <a class="btn small primary" href="papers/cs.AI-2.html">Details</a>
+            <a class="btn small" href="https://arxiv.org/pdf/2512.10952v1" target="_blank" rel="noopener">PDF</a>
+          </div>
+        </div>
+
+        <div class="paper-item">
+          <div class="paper-title"><a href="papers/cs.AI-3.html">Are We Ready for RL in Text-to-3D Generation? A Progressive Investigation</a></div>
+          <div class="paper-meta">
+            <span class="pill"><strong>Published</strong> 2025-12-11</span>
+            <span class="pill"><strong>Updated</strong> 2025-12-11</span>
+          </div>
+          <div class="paper-actions">
+            <a class="btn small primary" href="papers/cs.AI-3.html">Details</a>
+            <a class="btn small" href="https://arxiv.org/pdf/2512.10949v1" target="_blank" rel="noopener">PDF</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-body">
+          <h2>Hardware Architecture (cs.AR)</h2>
+          <div class="paper-actions">
+            <a class="btn primary" href="categories/cs.AR.html">Open category page</a>
+            <a class="btn" href="data/cs.AR.json">View JSON</a>
+          </div>
+        </div>
+
+        <div class="paper-item">
+          <div class="paper-title"><a href="papers/cs.AR-1.html">Design Space Exploration of DMA based Finer-Grain Compute Communication Overlap</a></div>
+          <div class="paper-meta">
+            <span class="pill"><strong>Published</strong> 2025-12-11</span>
+            <span class="pill"><strong>Updated</strong> 2025-12-11</span>
+          </div>
+          <div class="paper-actions">
+            <a class="btn small primary" href="papers/cs.AR-1.html">Details</a>
+            <a class="btn small" href="https://arxiv.org/pdf/2512.10236v1" target="_blank" rel="noopener">PDF</a>
+          </div>
+        </div>
+
+        <div class="paper-item">
+          <div class="paper-title"><a href="papers/cs.AR-2.html">SemanticBBV: A Semantic Signature for Cross-Program Knowledge Reuse in Microarchitecture Simulation</a></div>
+          <div class="paper-meta">
+            <span class="pill"><strong>Published</strong> 2025-12-11</span>
+            <span class="pill"><strong>Updated</strong> 2025-12-11</span>
+          </div>
+          <div class="paper-actions">
+            <a class="btn small primary" href="papers/cs.AR-2.html">Details</a>
+            <a class="btn small" href="https://arxiv.org/pdf/2512.10231v1" target="_blank" rel="noopener">PDF</a>
+          </div>
+        </div>
+
+        <div class="paper-item">
+          <div class="paper-title"><a href="papers/cs.AR-3.html">Neuromorphic Processor Employing FPGA Technology with Universal Interconnections</a></div>
+          <div class="paper-meta">
+            <span class="pill"><strong>Published</strong> 2025-12-11</span>
+            <span class="pill"><strong>Updated</strong> 2025-12-11</span>
+          </div>
+          <div class="paper-actions">
+            <a class="btn small primary" href="papers/cs.AR-3.html">Details</a>
+            <a class="btn small" href="https://arxiv.org/pdf/2512.10180v1" target="_blank" rel="noopener">PDF</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div class="note">Data source: <a href="https://export.arxiv.org/api/query">arXiv API</a>. Pages are generated by <code>scripts/fetch_arxiv.mjs</code>.</div>
+    </div>
+  </main>
+</body>
+</html>

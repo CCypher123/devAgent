@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SemanticBBV: A Semantic Signature for Cross-Program Knowledge Reuse in Microarchitecture Simulation • arXiv CS Daily</title>
+  <link rel="stylesheet" href="../assets/styles.css" />
+  <script defer src="../assets/site.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <a href="../index.html" class="title">arXiv CS Daily</a>
+        <div class="subtitle">Static demo built from arXiv Atom API (prefetched to avoid CORS)</div>
+      </div>
+      <nav class="nav">
+        <a href="../index.html">Home</a>
+        <a href="../categories/cs.AI.html">cs.AI</a>
+        <a href="../categories/cs.AR.html" class="active">cs.AR</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="card">
+      <div class="card-body">
+        <div class="pill"><strong>Category</strong> cs.AR</div>
+        <h2 style="margin-top:10px">SemanticBBV: A Semantic Signature for Cross-Program Knowledge Reuse in Microarchitecture Simulation</h2>
+        <div class="muted"><strong>Authors:</strong> Zhenguo Liu, Chengao Shi, Chen Ding, Jiang Xu</div>
+
+        <div class="kv">
+          <div class="k">Published</div><div class="v">2025-12-11 02:33:45 UTC</div>
+          <div class="k">Updated</div><div class="v">2025-12-11 02:33:45 UTC</div>
+          <div class="k">arXiv</div><div class="v"><a href="https://arxiv.org/abs/2512.10231v1" target="_blank" rel="noopener">2512.10231v1</a></div>
+          <div class="k">PDF</div><div class="v"><a href="https://arxiv.org/pdf/2512.10231v1" target="_blank" rel="noopener">Open PDF</a></div>
+        </div>
+
+        <h3>Abstract</h3>
+        <p class="paper-abstract">For decades, sampling-based techniques have been the de facto standard for accelerating microarchitecture simulation, with the Basic Block Vector (BBV) serving as the cornerstone program representation. Yet, the BBV's fundamental limitations: order-dependent IDs that prevent cross-program knowledge reuse and a lack of semantic content predictive of hardware performance have left a massive potential for optimization untapped. To address these gaps, we introduce SemanticBBV, a novel, two-stage framework that generates robust, performance-aware signatures for cross-program simulation reuse. First, a lightweight RWKV-based semantic encoder transforms assembly basic blocks into rich Basic Block Embeddings (BBEs), capturing deep functional semantics. Second, an order-invariant Set Transformer aggregates these BBEs, weighted by execution frequency, into a final signature. Crucially, this stage is co-trained with a dual objective: a triplet loss for signature distinctiveness and a Cycles Per Instruction (CPI) regression task, directly imbuing the signature with performance sensitivity. Our evaluation demonstrates that SemanticBBV not only matches traditional BBVs in single-program accuracy but also enables unprecedented cross-program analysis. By simulating just 14 universal program points, we estimated the performance of ten SPEC CPU benchmarks with 86.3% average accuracy, achieving a 7143x simulation speedup. Furthermore, the signature shows strong adaptability to new microarchitectures with minimal fine-tuning.</p>
+
+        <h3 style="margin-top:18px">Citations</h3>
+        <div class="citations">
+          <div class="cite-block">
+            <div class="cite-head">
+              <div class="label">Plain</div>
+              <button class="btn small" data-copy-target="#plain-cs.AR-2">Copy</button>
+            </div>
+            <pre id="plain-cs.AR-2">Zhenguo Liu, Chengao Shi, Chen Ding, Jiang Xu (2025). SemanticBBV: A Semantic Signature for Cross-Program Knowledge Reuse in Microarchitecture Simulation. arXiv:2512.10231v1. https://arxiv.org/abs/2512.10231v1</pre>
+          </div>
+          <div class="cite-block">
+            <div class="cite-head">
+              <div class="label">BibTeX</div>
+              <button class="btn small" data-copy-target="#bib-cs.AR-2">Copy</button>
+            </div>
+            <pre id="bib-cs.AR-2">@misc{Liu2025,
+  title        = {SemanticBBV: A Semantic Signature for Cross-Program Knowledge Reuse in Microarchitecture Simulation},
+  author       = {Zhenguo Liu and Chengao Shi and Chen Ding and Jiang Xu},
+  year         = {2025},
+  eprint       = {2512.10231v1},
+  archivePrefix= {arXiv},
+  primaryClass = {},
+  url          = {https://arxiv.org/abs/2512.10231v1}
+}</pre>
+          </div>
+        </div>
+
+        <div class="paper-actions" style="margin-top:16px">
+          <a class="btn" href="../categories/cs.AR.html">← Back to cs.AR</a>
+          <a class="btn primary" href="https://arxiv.org/pdf/2512.10231v1" target="_blank" rel="noopener">Open PDF</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div class="note">Data source: <a href="https://export.arxiv.org/api/query">arXiv API</a>. Pages are generated by <code>scripts/fetch_arxiv.mjs</code>.</div>
+    </div>
+  </main>
+</body>
+</html>

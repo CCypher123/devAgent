@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Design Space Exploration of DMA based Finer-Grain Compute Communication Overlap • arXiv CS Daily</title>
+  <link rel="stylesheet" href="../assets/styles.css" />
+  <script defer src="../assets/site.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <a href="../index.html" class="title">arXiv CS Daily</a>
+        <div class="subtitle">Static demo built from arXiv Atom API (prefetched to avoid CORS)</div>
+      </div>
+      <nav class="nav">
+        <a href="../index.html">Home</a>
+        <a href="../categories/cs.AI.html">cs.AI</a>
+        <a href="../categories/cs.AR.html" class="active">cs.AR</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="card">
+      <div class="card-body">
+        <div class="pill"><strong>Category</strong> cs.AR</div>
+        <h2 style="margin-top:10px">Design Space Exploration of DMA based Finer-Grain Compute Communication Overlap</h2>
+        <div class="muted"><strong>Authors:</strong> Shagnik Pal, Shaizeen Aga, Suchita Pati, Mahzabeen Islam, Lizy K. John</div>
+
+        <div class="kv">
+          <div class="k">Published</div><div class="v">2025-12-11 02:43:27 UTC</div>
+          <div class="k">Updated</div><div class="v">2025-12-11 02:43:27 UTC</div>
+          <div class="k">arXiv</div><div class="v"><a href="https://arxiv.org/abs/2512.10236v1" target="_blank" rel="noopener">2512.10236v1</a></div>
+          <div class="k">PDF</div><div class="v"><a href="https://arxiv.org/pdf/2512.10236v1" target="_blank" rel="noopener">Open PDF</a></div>
+        </div>
+
+        <h3>Abstract</h3>
+        <p class="paper-abstract">As both ML training and inference are increasingly distributed, parallelization techniques that shard (divide) ML model across GPUs of a distributed system, are often deployed. With such techniques, there is a high prevalence of data-dependent communication and computation operations where communication is exposed, leaving as high as 1.7x ideal performance on the table. Prior works harness the fact that ML model state and inputs are already sharded, and employ careful overlap of individual computation/communication shards. While such coarse-grain overlap is promising, in this work, we instead make a case for finer-grain compute-communication overlap which we term FiCCO, where we argue for finer-granularity, one-level deeper overlap than at shard-level, to unlock compute/communication overlap for a wider set of network topologies, finer-grain dataflow and more. We show that FiCCO opens up a wider design space of execution schedules than possible at shard-level alone. At the same time, decomposition of ML operations into smaller operations (done in both shard-based and finer-grain techniques) causes operation-level inefficiency losses. To balance the two, we first present a detailed characterization of these inefficiency losses, then present a design space of FiCCO schedules, and finally overlay the schedules with concomitant inefficiency signatures. Doing so helps us design heuristics that frameworks and runtimes can harness to select bespoke FiCCO schedules based on the nature of underlying ML operations. Finally, to further minimize contention inefficiencies inherent with operation overlap, we offload communication to GPU DMA engines. We evaluate several scenarios from realistic ML deployments and demonstrate that our proposed bespoke schedules deliver up to 1.6x speedup and our heuristics provide accurate guidance in 81% of unseen scenarios.</p>
+
+        <h3 style="margin-top:18px">Citations</h3>
+        <div class="citations">
+          <div class="cite-block">
+            <div class="cite-head">
+              <div class="label">Plain</div>
+              <button class="btn small" data-copy-target="#plain-cs.AR-1">Copy</button>
+            </div>
+            <pre id="plain-cs.AR-1">Shagnik Pal, Shaizeen Aga, Suchita Pati, Mahzabeen Islam, Lizy K. John (2025). Design Space Exploration of DMA based Finer-Grain Compute Communication Overlap. arXiv:2512.10236v1. https://arxiv.org/abs/2512.10236v1</pre>
+          </div>
+          <div class="cite-block">
+            <div class="cite-head">
+              <div class="label">BibTeX</div>
+              <button class="btn small" data-copy-target="#bib-cs.AR-1">Copy</button>
+            </div>
+            <pre id="bib-cs.AR-1">@misc{Pal2025,
+  title        = {Design Space Exploration of DMA based Finer-Grain Compute Communication Overlap},
+  author       = {Shagnik Pal and Shaizeen Aga and Suchita Pati and Mahzabeen Islam and Lizy K. John},
+  year         = {2025},
+  eprint       = {2512.10236v1},
+  archivePrefix= {arXiv},
+  primaryClass = {},
+  url          = {https://arxiv.org/abs/2512.10236v1}
+}</pre>
+          </div>
+        </div>
+
+        <div class="paper-actions" style="margin-top:16px">
+          <a class="btn" href="../categories/cs.AR.html">← Back to cs.AR</a>
+          <a class="btn primary" href="https://arxiv.org/pdf/2512.10236v1" target="_blank" rel="noopener">Open PDF</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div class="note">Data source: <a href="https://export.arxiv.org/api/query">arXiv API</a>. Pages are generated by <code>scripts/fetch_arxiv.mjs</code>.</div>
+    </div>
+  </main>
+</body>
+</html>

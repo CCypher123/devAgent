@@ -1,0 +1,65 @@
+{
+  "category": "cs.AI",
+  "fetchedAt": "2025-12-14T18:00:01Z",
+  "count": 3,
+  "papers": [
+    {
+      "title": "SceneMaker: Open-set 3D Scene Generation with Decoupled De-occlusion and Pose Estimation Model",
+      "absUrl": "https://arxiv.org/abs/2512.10957v1",
+      "pdfUrl": "https://arxiv.org/pdf/2512.10957v1",
+      "published": "2025-12-11T18:59:56Z",
+      "updated": "2025-12-11T18:59:56Z",
+      "authors": [
+        "Yukai Shi",
+        "Weiyu Li",
+        "Zihao Wang",
+        "Hongyang Li",
+        "Xingyu Chen",
+        "Ping Tan",
+        "Lei Zhang"
+      ],
+      "summary": "We propose a decoupled 3D scene generation framework called SceneMaker in this work. Due to the lack of sufficient open-set de-occlusion and pose estimation priors, existing methods struggle to simultaneously produce high-quality geometry and accurate poses under severe occlusion and open-set settings. To address these issues, we first decouple the de-occlusion model from 3D object generation, and enhance it by leveraging image datasets and collected de-occlusion datasets for much more diverse open-set occlusion patterns. Then, we propose a unified pose estimation model that integrates global and local mechanisms for both self-attention and cross-attention to improve accuracy. Besides, we construct an open-set 3D scene dataset to further extend the generalization of the pose estimation model. Comprehensive experiments demonstrate the superiority of our decoupled framework on both indoor and open-set scenes. Our codes and datasets is released at https://idea-research.github.io/SceneMaker/.",
+      "arxivId": "2512.10957v1"
+    },
+    {
+      "title": "Hierarchical Dataset Selection for High-Quality Data Sharing",
+      "absUrl": "https://arxiv.org/abs/2512.10952v1",
+      "pdfUrl": "https://arxiv.org/pdf/2512.10952v1",
+      "published": "2025-12-11T18:59:55Z",
+      "updated": "2025-12-11T18:59:55Z",
+      "authors": [
+        "Xiaona Zhou",
+        "Yingyan Zeng",
+        "Ran Jin",
+        "Ismini Lourentzou"
+      ],
+      "summary": "The success of modern machine learning hinges on access to high-quality training data. In many real-world scenarios, such as acquiring data from public repositories or sharing across institutions, data is naturally organized into discrete datasets that vary in relevance, quality, and utility. Selecting which repositories or institutions to search for useful datasets, and which datasets to incorporate into model training are therefore critical decisions, yet most existing methods select individual samples and treat all data as equally relevant, ignoring differences between datasets and their sources. In this work, we formalize the task of dataset selection: selecting entire datasets from a large, heterogeneous pool to improve downstream performance under resource constraints. We propose Dataset Selection via Hierarchies (DaSH), a dataset selection method that models utility at both dataset and group (e.g., collections, institutions) levels, enabling efficient generalization from limited observations. Across two public benchmarks (Digit-Five and DomainNet), DaSH outperforms state-of-the-art data selection baselines by up to 26.2% in accuracy, while requiring significantly fewer exploration steps. Ablations show DaSH is robust to low-resource settings and lack of relevant datasets, making it suitable for scalable and adaptive dataset selection in practical multi-source learning workflows.",
+      "arxivId": "2512.10952v1"
+    },
+    {
+      "title": "Are We Ready for RL in Text-to-3D Generation? A Progressive Investigation",
+      "absUrl": "https://arxiv.org/abs/2512.10949v1",
+      "pdfUrl": "https://arxiv.org/pdf/2512.10949v1",
+      "published": "2025-12-11T18:59:52Z",
+      "updated": "2025-12-11T18:59:52Z",
+      "authors": [
+        "Yiwen Tang",
+        "Zoey Guo",
+        "Kaixin Zhu",
+        "Ray Zhang",
+        "Qizhi Chen",
+        "Dongzhi Jiang",
+        "Junli Liu",
+        "Bohan Zeng",
+        "Haoming Song",
+        "Delin Qu",
+        "Tianyi Bai",
+        "Dan Xu",
+        "Wentao Zhang",
+        "Bin Zhao"
+      ],
+      "summary": "Reinforcement learning (RL), earlier proven to be effective in large language and multi-modal models, has been successfully extended to enhance 2D image generation recently. However, applying RL to 3D generation remains largely unexplored due to the higher spatial complexity of 3D objects, which require globally consistent geometry and fine-grained local textures. This makes 3D generation significantly sensitive to reward designs and RL algorithms. To address these challenges, we conduct the first systematic study of RL for text-to-3D autoregressive generation across several dimensions. (1) Reward designs: We evaluate reward dimensions and model choices, showing that alignment with human preference is crucial, and that general multi-modal models provide robust signal for 3D attributes. (2) RL algorithms: We study GRPO variants, highlighting the effectiveness of token-level optimization, and further investigate the scaling of training data and iterations. (3) Text-to-3D Benchmarks: Since existing benchmarks fail to measure implicit reasoning abilities in 3D generation models, we introduce MME-3DR. (4) Advanced RL paradigms: Motivated by the natural hierarchy of 3D generation, we propose Hi-GRPO, which optimizes the global-to-local hierarchical 3D generation through dedicated reward ensembles. Based on these insights, we develop AR3D-R1, the first RL-enhanced text-to-3D model, expert from coarse shape to texture refinement. We hope this study provides insights into RL-driven reasoning for 3D generation. Code is released at https://github.com/Ivan-Tang-3D/3DGen-R1.",
+      "arxivId": "2512.10949v1"
+    }
+  ]
+}

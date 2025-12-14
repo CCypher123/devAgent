@@ -1,0 +1,52 @@
+{
+  "category": "cs.AR",
+  "fetchedAt": "2025-12-14T18:08:38Z",
+  "count": 3,
+  "papers": [
+    {
+      "title": "Design Space Exploration of DMA based Finer-Grain Compute Communication Overlap",
+      "absUrl": "https://arxiv.org/abs/2512.10236v1",
+      "pdfUrl": "https://arxiv.org/pdf/2512.10236v1",
+      "published": "2025-12-11T02:43:27Z",
+      "updated": "2025-12-11T02:43:27Z",
+      "authors": [
+        "Shagnik Pal",
+        "Shaizeen Aga",
+        "Suchita Pati",
+        "Mahzabeen Islam",
+        "Lizy K. John"
+      ],
+      "summary": "As both ML training and inference are increasingly distributed, parallelization techniques that shard (divide) ML model across GPUs of a distributed system, are often deployed. With such techniques, there is a high prevalence of data-dependent communication and computation operations where communication is exposed, leaving as high as 1.7x ideal performance on the table. Prior works harness the fact that ML model state and inputs are already sharded, and employ careful overlap of individual computation/communication shards. While such coarse-grain overlap is promising, in this work, we instead make a case for finer-grain compute-communication overlap which we term FiCCO, where we argue for finer-granularity, one-level deeper overlap than at shard-level, to unlock compute/communication overlap for a wider set of network topologies, finer-grain dataflow and more. We show that FiCCO opens up a wider design space of execution schedules than possible at shard-level alone. At the same time, decomposition of ML operations into smaller operations (done in both shard-based and finer-grain techniques) causes operation-level inefficiency losses. To balance the two, we first present a detailed characterization of these inefficiency losses, then present a design space of FiCCO schedules, and finally overlay the schedules with concomitant inefficiency signatures. Doing so helps us design heuristics that frameworks and runtimes can harness to select bespoke FiCCO schedules based on the nature of underlying ML operations. Finally, to further minimize contention inefficiencies inherent with operation overlap, we offload communication to GPU DMA engines. We evaluate several scenarios from realistic ML deployments and demonstrate that our proposed bespoke schedules deliver up to 1.6x speedup and our heuristics provide accurate guidance in 81% of unseen scenarios.",
+      "arxivId": "2512.10236v1"
+    },
+    {
+      "title": "SemanticBBV: A Semantic Signature for Cross-Program Knowledge Reuse in Microarchitecture Simulation",
+      "absUrl": "https://arxiv.org/abs/2512.10231v1",
+      "pdfUrl": "https://arxiv.org/pdf/2512.10231v1",
+      "published": "2025-12-11T02:33:45Z",
+      "updated": "2025-12-11T02:33:45Z",
+      "authors": [
+        "Zhenguo Liu",
+        "Chengao Shi",
+        "Chen Ding",
+        "Jiang Xu"
+      ],
+      "summary": "For decades, sampling-based techniques have been the de facto standard for accelerating microarchitecture simulation, with the Basic Block Vector (BBV) serving as the cornerstone program representation. Yet, the BBV's fundamental limitations: order-dependent IDs that prevent cross-program knowledge reuse and a lack of semantic content predictive of hardware performance have left a massive potential for optimization untapped. To address these gaps, we introduce SemanticBBV, a novel, two-stage framework that generates robust, performance-aware signatures for cross-program simulation reuse. First, a lightweight RWKV-based semantic encoder transforms assembly basic blocks into rich Basic Block Embeddings (BBEs), capturing deep functional semantics. Second, an order-invariant Set Transformer aggregates these BBEs, weighted by execution frequency, into a final signature. Crucially, this stage is co-trained with a dual objective: a triplet loss for signature distinctiveness and a Cycles Per Instruction (CPI) regression task, directly imbuing the signature with performance sensitivity. Our evaluation demonstrates that SemanticBBV not only matches traditional BBVs in single-program accuracy but also enables unprecedented cross-program analysis. By simulating just 14 universal program points, we estimated the performance of ten SPEC CPU benchmarks with 86.3% average accuracy, achieving a 7143x simulation speedup. Furthermore, the signature shows strong adaptability to new microarchitectures with minimal fine-tuning.",
+      "arxivId": "2512.10231v1"
+    },
+    {
+      "title": "Neuromorphic Processor Employing FPGA Technology with Universal Interconnections",
+      "absUrl": "https://arxiv.org/abs/2512.10180v1",
+      "pdfUrl": "https://arxiv.org/pdf/2512.10180v1",
+      "published": "2025-12-11T00:35:48Z",
+      "updated": "2025-12-11T00:35:48Z",
+      "authors": [
+        "Pracheta Harlikar",
+        "Abdel-Hameed A. Badawy",
+        "Prasanna Date"
+      ],
+      "summary": "Neuromorphic computing, inspired by biological neural systems, holds immense promise for ultra-low-power and real-time inference applications. However, limited access to flexible, open-source platforms continues to hinder widespread adoption and experimentation. In this paper, we present a low-cost neuromorphic processor implemented on a Xilinx Zynq-7000 FPGA platform. The processor supports all-to-all configurable connectivity and employs the leaky integrate-and-fire (LIF) neuron model with customizable parameters such as threshold, synaptic weights, and refractory period. Communication with the host system is handled via a UART interface, enabling runtime reconfiguration without hardware resynthesis. The architecture was validated using benchmark datasets including the Iris classification and MNIST digit recognition tasks. Post-synthesis results highlight the design's energy efficiency and scalability, establishing its viability as a research-grade neuromorphic platform that is both accessible and adaptable for real-world spiking neural network applications. This implementation will be released as open source following project completion.",
+      "arxivId": "2512.10180v1"
+    }
+  ]
+}

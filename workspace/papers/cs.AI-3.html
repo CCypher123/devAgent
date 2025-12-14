@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Are We Ready for RL in Text-to-3D Generation? A Progressive Investigation • arXiv CS Daily</title>
+  <link rel="stylesheet" href="../assets/styles.css" />
+  <script defer src="../assets/site.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <a href="../index.html" class="title">arXiv CS Daily</a>
+        <div class="subtitle">Static demo built from arXiv Atom API (prefetched to avoid CORS)</div>
+      </div>
+      <nav class="nav">
+        <a href="../index.html">Home</a>
+        <a href="../categories/cs.AI.html" class="active">cs.AI</a>
+        <a href="../categories/cs.AR.html">cs.AR</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="card">
+      <div class="card-body">
+        <div class="pill"><strong>Category</strong> cs.AI</div>
+        <h2 style="margin-top:10px">Are We Ready for RL in Text-to-3D Generation? A Progressive Investigation</h2>
+        <div class="muted"><strong>Authors:</strong> Yiwen Tang, Zoey Guo, Kaixin Zhu, Ray Zhang, Qizhi Chen, Dongzhi Jiang, Junli Liu, Bohan Zeng, Haoming Song, Delin Qu, Tianyi Bai, Dan Xu, Wentao Zhang, Bin Zhao</div>
+
+        <div class="kv">
+          <div class="k">Published</div><div class="v">2025-12-11 18:59:52 UTC</div>
+          <div class="k">Updated</div><div class="v">2025-12-11 18:59:52 UTC</div>
+          <div class="k">arXiv</div><div class="v"><a href="https://arxiv.org/abs/2512.10949v1" target="_blank" rel="noopener">2512.10949v1</a></div>
+          <div class="k">PDF</div><div class="v"><a href="https://arxiv.org/pdf/2512.10949v1" target="_blank" rel="noopener">Open PDF</a></div>
+        </div>
+
+        <h3>Abstract</h3>
+        <p class="paper-abstract">Reinforcement learning (RL), earlier proven to be effective in large language and multi-modal models, has been successfully extended to enhance 2D image generation recently. However, applying RL to 3D generation remains largely unexplored due to the higher spatial complexity of 3D objects, which require globally consistent geometry and fine-grained local textures. This makes 3D generation significantly sensitive to reward designs and RL algorithms. To address these challenges, we conduct the first systematic study of RL for text-to-3D autoregressive generation across several dimensions. (1) Reward designs: We evaluate reward dimensions and model choices, showing that alignment with human preference is crucial, and that general multi-modal models provide robust signal for 3D attributes. (2) RL algorithms: We study GRPO variants, highlighting the effectiveness of token-level optimization, and further investigate the scaling of training data and iterations. (3) Text-to-3D Benchmarks: Since existing benchmarks fail to measure implicit reasoning abilities in 3D generation models, we introduce MME-3DR. (4) Advanced RL paradigms: Motivated by the natural hierarchy of 3D generation, we propose Hi-GRPO, which optimizes the global-to-local hierarchical 3D generation through dedicated reward ensembles. Based on these insights, we develop AR3D-R1, the first RL-enhanced text-to-3D model, expert from coarse shape to texture refinement. We hope this study provides insights into RL-driven reasoning for 3D generation. Code is released at https://github.com/Ivan-Tang-3D/3DGen-R1.</p>
+
+        <h3 style="margin-top:18px">Citations</h3>
+        <div class="citations">
+          <div class="cite-block">
+            <div class="cite-head">
+              <div class="label">Plain</div>
+              <button class="btn small" data-copy-target="#plain-cs.AI-3">Copy</button>
+            </div>
+            <pre id="plain-cs.AI-3">Yiwen Tang, Zoey Guo, Kaixin Zhu, Ray Zhang, Qizhi Chen, Dongzhi Jiang, Junli Liu, Bohan Zeng, Haoming Song, Delin Qu, Tianyi Bai, Dan Xu, Wentao Zhang, Bin Zhao (2025). Are We Ready for RL in Text-to-3D Generation? A Progressive Investigation. arXiv:2512.10949v1. https://arxiv.org/abs/2512.10949v1</pre>
+          </div>
+          <div class="cite-block">
+            <div class="cite-head">
+              <div class="label">BibTeX</div>
+              <button class="btn small" data-copy-target="#bib-cs.AI-3">Copy</button>
+            </div>
+            <pre id="bib-cs.AI-3">@misc{Tang2025,
+  title        = {Are We Ready for RL in Text-to-3D Generation? A Progressive Investigation},
+  author       = {Yiwen Tang and Zoey Guo and Kaixin Zhu and Ray Zhang and Qizhi Chen and Dongzhi Jiang and Junli Liu and Bohan Zeng and Haoming Song and Delin Qu and Tianyi Bai and Dan Xu and Wentao Zhang and Bin Zhao},
+  year         = {2025},
+  eprint       = {2512.10949v1},
+  archivePrefix= {arXiv},
+  primaryClass = {},
+  url          = {https://arxiv.org/abs/2512.10949v1}
+}</pre>
+          </div>
+        </div>
+
+        <div class="paper-actions" style="margin-top:16px">
+          <a class="btn" href="../categories/cs.AI.html">← Back to cs.AI</a>
+          <a class="btn primary" href="https://arxiv.org/pdf/2512.10949v1" target="_blank" rel="noopener">Open PDF</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div class="note">Data source: <a href="https://export.arxiv.org/api/query">arXiv API</a>. Pages are generated by <code>scripts/fetch_arxiv.mjs</code>.</div>
+    </div>
+  </main>
+</body>
+</html>

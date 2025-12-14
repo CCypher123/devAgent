@@ -1,135 +1,126 @@
 # agents/researcher.py
+from typing import TypedDict, Dict, Any
 import json, os
-from langchain_core.messages import SystemMessage, HumanMessage, ToolMessage
+
 from langchain_openai import ChatOpenAI
-from tools.init import TOOLS_BY_NAME
-from tools.web_search import web_search
-from tools.web_fetch import web_fetch
+from langchain_core.messages import SystemMessage, HumanMessage, AIMessage, ToolMessage
 from dotenv import load_dotenv
+
+from tools.init import TOOLS_BY_NAME
+
 load_dotenv("properties.env")
 MODEL = os.getenv("OPENAI_MODEL")
 
-RESEARCH_SYSTEM = """You are a Research Agent.
-You help other agents by collecting web evidence.
 
-You MUST build an evidence_pack JSON object with the following keys:
-- "queries": list of search queries you actually used.
-- "sources": list of objects describing useful URLs or pages.
-- "notes": list of short takeaways for the coding task.
-- "gotchas": list of potential pitfalls / rate limits / quirks.
-- "recommended_examples": list of example URLs or code snippets to follow.
+class State(TypedDict, total=False):
+    task: str
+    spec: dict
+    evidence_pack: Dict[str, Any]
+    enable_research: bool
 
-When you return the final answer (no tool calls), ALWAYS return ONLY valid JSON for this evidence_pack."""
 
-def researcher_node(state):
-    return state
-    task_text = state.get("task") or state.get("spec", {}).get("task", "")
+RESEARCH_SYSTEM = (
+    "You are a Research Agent.\n"
+    "Your job is to collect a small, focused evidence_pack for downstream coding.\n"
+    "You MAY use the `web_search` tool to discover relevant URLs and the `web_fetch` tool "
+    "to retrieve detailed content (API docs, examples, etc.).\n"
+    "Always return a compact JSON object as your final answer.\n"
+)
 
-    model = ChatOpenAI(model=MODEL, temperature=0).bind_tools(
-        [TOOLS_BY_NAME["web_fetch"], TOOLS_BY_NAME["web_search"]]
+
+def researcher_node(state: State) -> State:
+    """
+    Research Agent（可选）：
+    - 当 state.enable_research 为 True 时：执行简单的 search + fetch 流程，产出 evidence_pack。
+    - 当未启用时：直接返回 state，不做任何事，不影响当前工作流稳定性。
+    """
+
+    # 1) 默认不开研究
+    if not state.get("enable_research", False):
+        if "evidence_pack" not in state:
+            state["evidence_pack"] = {}
+        return state
+
+    task_text = (state.get("task") or "").strip()
+    spec = state.get("spec") or {}
+
+    model = ChatOpenAI(model=MODEL).bind_tools(
+        [
+            TOOLS_BY_NAME["web_search"],
+            TOOLS_BY_NAME["web_fetch"],
+        ]
     )
 
-    msgs = [
+    # 2) 第一步：让 LLM 计划要查什么、调哪些工具
+    messages = [
         SystemMessage(content=RESEARCH_SYSTEM),
         HumanMessage(content=f"""
-Task:
+Task description:
 {task_text}
 
-Steps:
-1) Use web_search to find official docs and reliable references (3-5 queries).
-2) Use web_fetch to fetch 2-4 best pages.
-3) Produce evidence_pack JSON with sources + notes + gotchas + recommended_examples.
+High-level spec (if any, JSON):
+{json.dumps(spec, ensure_ascii=False, indent=2)}
+
+Your goals:
+- Optionally call web_search to find relevant URLs.
+- Optionally call web_fetch on 1–3 highly relevant URLs (e.g., API manuals, reference docs).
+- Finally, summarize everything into a JSON evidence_pack with keys:
+  - "sources": brief list of {{title, url}} or similar
+  - "notes": short bullet notes (list of strings)
+  - "gotchas": edge cases / pitfalls (list of strings)
+  - "recommended_examples": short code / URL pointers (list of strings)
+If tools are not available or fail, still return a best-effort JSON based on your own knowledge.
 """)
     ]
 
-    # 先准备一个 evidence，边跑工具边填充，确保不会是空的
-    evidence = {
-        "queries": [],
-        "sources": [],
-        "notes": [],
-        "gotchas": [],
-        "recommended_examples": [],
-    }
+    # 工具调用最多十轮，避免过度搜索
+    for _ in range(10):
+        ai = model.invoke(messages)
+        messages.append(ai)
 
-    # 第一轮，让模型决定要不要用工具
-    ai = model.invoke(msgs)
+        if not isinstance(ai, AIMessage) or not getattr(ai, "tool_calls", None):
+            # 没有工具调用，直接把 ai.content 当成最终 JSON 尝试解析
+            try:
+                evidence = json.loads(ai.content)
+            except Exception:
+                evidence = {"notes": [ai.content]}
+            state["evidence_pack"] = evidence
+            return state
 
-    if getattr(ai, "tool_calls", None):
-        msgs.append(ai)
+        # 有 tool_calls：执行工具，再让模型总结一次
         for tc in ai.tool_calls:
             name = tc["name"]
-            args = tc["args"] or {}
+            args = tc.get("args") or {}
+            tool = TOOLS_BY_NAME.get(name)
+            if not tool:
+                messages.append(ToolMessage(
+                    content=f"ERROR: unknown tool {name}",
+                    tool_call_id=tc["id"],
+                ))
+                continue
 
             try:
-                if name == "web_search":
-                    raw = web_search.invoke(args)
-                    # 记录 query
-                    q = args.get("query", "")
-                    if q:
-                        evidence["queries"].append(q)
+                out = tool.invoke(args)
+                messages.append(ToolMessage(
+                    content=str(out),
+                    tool_call_id=tc["id"],
+                ))
+            except Exception as e:  # noqa: BLE001
+                messages.append(ToolMessage(
+                    content=f"ERROR: tool failed: {e}",
+                    tool_call_id=tc["id"],
+                ))
 
-                    # 解析结果列表
-                    try:
-                        results = json.loads(raw)
-                    except Exception:
-                        results = []
-
-                    for item in results:
-                        evidence["sources"].append({
-                            "type": "search_result",
-                            "title": item.get("title", ""),
-                            "url": item.get("url", ""),
-                            "snippet": item.get("snippet", ""),
-                        })
-
-                elif name == "web_fetch":
-                    raw = web_fetch.invoke(args)
-                    try:
-                        payload = json.loads(raw)
-                    except Exception:
-                        payload = {"raw": raw}
-
-                    evidence["sources"].append({
-                        "type": "fetched_page",
-                        "url": payload.get("url", ""),
-                        "status": payload.get("status", ""),
-                        # 文本太长没必要全存，截个开头
-                        "text": (payload.get("text") or "")[:1000],
-                    })
-                else:
-                    # 未知工具
-                    payload = {"tool": name, "error": "unknown tool", "args": args}
-                    evidence["sources"].append(payload)
-
-                # 把工具结果也作为 ToolMessage 回给模型
-                tool_content = raw if isinstance(raw, str) else json.dumps(raw, ensure_ascii=False)
-                msgs.append(ToolMessage(content=tool_content, tool_call_id=tc["id"]))
-
-            except Exception as e:
-                # 防御性兜底：工具崩溃也不要让 graph 崩
-                err_payload = {"tool": name, "error": str(e), "args": args}
-                evidence["sources"].append(err_payload)
-                msgs.append(ToolMessage(content=json.dumps(err_payload, ensure_ascii=False),
-                                        tool_call_id=tc["id"]))
-
-        # 第二轮：让模型基于上面的 ToolMessages 来生成最终 evidence_pack JSON
-        final = model.invoke(msgs)
+        # 再让模型汇总一次，产出 evidence_pack JSON
+        final = model.invoke(messages)
         try:
-            model_pack = json.loads(final.content)
-            # 用模型总结出来的字段覆盖 / 合并
-            for k in evidence.keys():
-                if k in model_pack and isinstance(model_pack[k], list):
-                    evidence[k] = model_pack[k]
+            evidence = json.loads(final.content)
         except Exception:
-            # 如果模型输出不是合法 JSON，就把内容当成 note
-            evidence["notes"].append(final.content)
+            evidence = {"notes": [final.content]}
+        state["evidence_pack"] = evidence
+        return state
 
-    else:
-        # 模型没有调用任何工具，直接尝试把 content 当 JSON
-        try:
-            evidence = json.loads(ai.content)
-        except Exception:
-            evidence["notes"].append(ai.content)
-
-    state["evidence_pack"] = evidence
+    # 理论上不会跑到这里，兜底一下
+    if "evidence_pack" not in state:
+        state["evidence_pack"] = {}
     return state
