@@ -14,9 +14,6 @@ class State(TypedDict, total=False):
     spec: dict
     task_queue: List[dict]
     done_tasks: List[dict]
-    test_log: str
-    tests_passed: bool
-    review: str
     test_targets: List[str]   # 例如 ["app.py", "scripts/check_data.py"]
     # evaluator 输出
     tests_passed: bool
