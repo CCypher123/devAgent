@@ -35,10 +35,10 @@ passed={state.get("tests_passed")}
 log:
 {state.get("test_log","")}
 
-Give a concise Chinese review:
-- 是否满足 acceptance_criteria
-- 结构与可读性
-- 明确指出 2~4 个可改进点
-- 如果没有测试结果（passed 为 null），就只根据文件结构和任务描述进行主观评估。
+Give a concise review:
+- Whether the acceptance criteria are met
+- Structure and readability
+- Clearly identify 2–4 areas for improvement
+- If there are no test results (passed is null), conduct a subjective evaluation based solely on the file structure and the task description
 """
     return {"review": model.invoke(prompt).content}

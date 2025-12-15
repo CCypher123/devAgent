@@ -11,7 +11,6 @@ from agents.researcher import researcher_node
 
 class State(TypedDict, total=False):
     task: str
-    # 以下字段都变成「可选」，coder/reviewer 用得到就用，用不到就算了
     spec: dict
     task_queue: List[dict]
     done_tasks: List[dict]

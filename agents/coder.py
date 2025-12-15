@@ -126,5 +126,4 @@ Requirements:
                     tool_call_id=tc["id"],
                 ))
 
-    # 单轮模式下，不维护 task_queue / done_tasks，原样返回 state 即可
     return state
